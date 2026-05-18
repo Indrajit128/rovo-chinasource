@@ -243,11 +243,18 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allProducts.slice(0, 3).map((product, idx) => (
+            {[
+              allProducts[0],  // Smart Bluetooth Headphones (Electronics)
+              allProducts[10], // Modern Accent Lounge Chairs (Furniture)
+              allProducts[16], // Ceramic Decorative Vase Sets (Decor)
+              allProducts[17], // Modern LED Pendant Chandeliers (Decor)
+              allProducts[21], // Organic Cotton Oversized Hoodies (Apparel)
+              allProducts[29], // Fiber Laser Engraving Machines (Industrial)
+            ].map((product, idx) => (
               <motion.div
                 key={idx}
                 {...fadeUp}
-                transition={{ delay: 0.1 * (idx + 1) }}
+                transition={{ delay: 0.08 * (idx + 1) }}
                 className="bg-white rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100"
               >
                 <div className="relative w-full h-48 overflow-hidden bg-gray-100">
@@ -264,7 +271,7 @@ export default function Home() {
                 </div>
                 
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="font-inter font-bold text-lg text-[#0F172A] mb-3 leading-tight line-clamp-2">
+                  <h3 className="font-inter font-bold text-lg text-[#0F172A] mb-3 leading-tight line-clamp-2" style={{ minHeight: '3.5rem' }}>
                     {product.title}
                   </h3>
                   <p className="text-[#64748B] text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
