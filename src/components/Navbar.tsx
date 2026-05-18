@@ -55,7 +55,8 @@ export default function Navbar() {
           <Link href="/contact" className="nav-link" style={{ color: '#0F172A' }}>Contact Details</Link>
         </nav>
 
-        <button 
+        <Link 
+          href="/contact"
           className="btn-primary" 
           style={{ 
             borderRadius: '9999px', 
@@ -64,11 +65,13 @@ export default function Navbar() {
             fontWeight: 'bold', 
             border: 'none', 
             padding: '0.625rem 1.5rem',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            textDecoration: 'none',
+            display: 'inline-block'
           }}
         >
-          Become a Member
-        </button>
+          Get Started
+        </Link>
       </div>
     </header>
   );
