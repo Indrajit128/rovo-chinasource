@@ -7,7 +7,6 @@ import { motion, MotionProps } from "framer-motion";
 import { allProducts } from "./products/data";
 import { 
   Zap, 
-  BarChart3, 
   Globe,
   FileText,
   Search,
@@ -308,77 +307,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US — OPTION 3: FLOATING GLASSMORPHISM */}
-      <section className="section bg-deep-navy relative overflow-hidden" style={{ minHeight: '800px', display: 'flex', alignItems: 'center' }}>
-        {/* Fluid Gradient Background */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-          <div className="fluid-blob fluid-blob-1" />
-          <div className="fluid-blob fluid-blob-2" />
-        </div>
-
-        <div className="container relative z-10 w-full">
-          <div className="floating-layout">
-            {/* Left: Content */}
-            <motion.div {...fadeUp} className="floating-content-col">
-              <span className="section-eyebrow text-cyan" style={{ display: 'block', marginBottom: '1rem' }}>Excellence</span>
-              <h2 className="h2-display text-white">
-                The ROVO Standard
-              </h2>
-              <p className="text-white-muted mb-lg" style={{ fontSize: '1.2rem', maxWidth: '500px', lineHeight: '1.6' }}>
-                We don&apos;t just move cargo; we engineer trade corridors. Experience logistics powered by advanced analytics and boots-on-the-ground precision.
-              </p>
-            </motion.div>
-
-            {/* Right: Floating Glass Cards */}
-            <div className="floating-cards-col" onMouseMove={handleMouseMove}>
-              {/* Card 1 */}
-              <motion.div 
-                className="floating-glass-card spotlight-card card-pos-1"
-                animate={mounted ? { y: [0, -15, 0] } : {}}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="relative z-10">
-                  <div className="icon-ring orange">
-                    <Zap size={24} color="#f97316" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>High-Velocity Operations</h3>
-                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Optimized factory-to-port routing cutting lead times drastically.</p>
-                </div>
-              </motion.div>
-
-              {/* Card 2 */}
-              <motion.div 
-                className="floating-glass-card spotlight-card card-pos-2"
-                animate={mounted ? { y: [0, 20, 0] } : {}}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <div className="relative z-10">
-                  <div className="icon-ring blue">
-                    <BarChart3 size={24} color="#3b82f6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>Real-Time Intelligence</h3>
-                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Full visibility into your cargo&apos;s journey with predictive tracking.</p>
-                </div>
-              </motion.div>
-
-              {/* Card 3 */}
-              <motion.div 
-                className="floating-glass-card spotlight-card card-pos-3"
-                animate={mounted ? { y: [0, -10, 0] } : {}}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              >
-                <div className="relative z-10">
-                  <div className="icon-ring emerald">
-                    <Globe size={24} color="#10b981" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>Global Infrastructure</h3>
-                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Boots on the ground in Guangzhou, Hong Kong, and major Indian ports.</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* STEP-BY-STEP — VISUALIZATION UPGRADE */}
       <section id="process" className="section bg-white" style={{ position: 'relative', overflow: 'hidden' }}>
