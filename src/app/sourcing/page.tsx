@@ -117,7 +117,7 @@ export default function SourcingPage() {
       <section className="product-catalog-hero" style={{ background: "none", paddingBottom: "5rem" }}>
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <Image
-            src="/sourcing.png"
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
             alt="Strategic Sourcing"
             fill
             style={{ objectFit: "cover", objectPosition: "center" }}
