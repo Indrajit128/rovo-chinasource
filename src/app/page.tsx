@@ -155,7 +155,7 @@ export default function Home() {
                 <div className="service-spotlight-specs">
                   <div className="service-spotlight-spec-row">
                     <span className="service-spotlight-spec-label">Typical Transit:</span>
-                    <span className="service-spotlight-spec-value">14 - 18 Days</span>
+                    <span className="service-spotlight-spec-value">30 - 35 Days</span>
                   </div>
                   <div className="service-spotlight-spec-row">
                     <span className="service-spotlight-spec-label">Port Terminals:</span>
@@ -178,7 +178,7 @@ export default function Home() {
                 <div className="service-spotlight-specs">
                   <div className="service-spotlight-spec-row">
                     <span className="service-spotlight-spec-label">Typical Transit:</span>
-                    <span className="service-spotlight-spec-value">3 - 5 Days</span>
+                    <span className="service-spotlight-spec-value">7-9 Days</span>
                   </div>
                   <div className="service-spotlight-spec-row">
                     <span className="service-spotlight-spec-label">Service Type:</span>
