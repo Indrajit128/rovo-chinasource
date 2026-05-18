@@ -34,7 +34,19 @@ export default function ProductsPage() {
     <main style={{ minHeight: "100vh", background: "#F8FAFC" }}>
 
       {/* ── Dark Hero Banner ── */}
-      <section className="product-catalog-hero">
+      <section className="product-catalog-hero" style={{ background: "none" }}>
+        {/* Background Image */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <Image
+            src="/sourcing.png"
+            alt="Product Catalog Hero"
+            fill
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+          />
+          {/* Dark overlay */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(30,41,59,0.82) 60%, rgba(15,23,42,0.90) 100%)" }} />
+        </div>
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <motion.div {...fadeUp} transition={{ duration: 0.6 }}>
             <div className="product-hero-eyebrow">
