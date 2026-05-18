@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -131,6 +132,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Interactive Sourcing Calculator ── */}
+      <SourcingCalculator />
+
       {/* ── Core Values ── */}
       <section className="section bg-white">
         <div className="container">
@@ -178,5 +182,133 @@ export default function AboutPage() {
       </section>
 
     </main>
+  );
+}
+
+function SourcingCalculator() {
+  const [volume, setVolume] = useState(50000);
+  const [category, setCategory] = useState("Electronics");
+
+  // Middleman markup percentage based on category
+  const getMarkupPct = () => {
+    switch (category) {
+      case "Electronics": return 0.18;
+      case "Furniture":   return 0.22;
+      case "Machinery":   return 0.15;
+      case "Apparel":     return 0.25;
+      case "Decor":       return 0.20;
+      default:            return 0.20;
+    }
+  };
+
+  const markupPct = getMarkupPct();
+  const savedAmount = Math.round(volume * markupPct);
+  const directCost = volume - savedAmount;
+
+  return (
+    <section className="section" style={{ background: "#F1F5F9", paddingTop: "5rem", paddingBottom: "5rem" }}>
+      <div className="container">
+        <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+          <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>SAVINGS CALCULATOR</span>
+          <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Calculate Your Sourcing Savings</h2>
+          <p style={{ color: "#64748b", maxWidth: "560px", margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.65 }}>
+            See how much you save by bypassing standard trade agents and sourcing directly from Chinese factory gates.
+          </p>
+        </motion.div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", alignItems: "stretch" }}>
+          {/* Controls Card */}
+          <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ background: "white", borderRadius: "1.5rem", padding: "2.5rem", border: "1px solid #e2e8f0", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#0f172a", marginBottom: "1.5rem" }}>Configure Sourcing Parameters</h3>
+            
+            {/* Category Selector */}
+            <div style={{ marginBottom: "2rem" }}>
+              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 700, color: "#475569", marginBottom: "0.75rem" }}>SELECT PRODUCT CATEGORY</label>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {["Electronics", "Furniture", "Machinery", "Apparel", "Decor"].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setCategory(cat)}
+                    style={{
+                      background: category === cat ? "#C62828" : "#F8FAFC",
+                      color: category === cat ? "white" : "#475569",
+                      border: "1px solid",
+                      borderColor: category === cat ? "#C62828" : "#e2e8f0",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "99px",
+                      fontSize: "0.8rem",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Volume Slider */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+                <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "#475569" }}>TARGET ORDER VOLUME (USD)</label>
+                <span style={{ fontSize: "1rem", fontWeight: 800, color: "#C62828" }}>${volume.toLocaleString()}</span>
+              </div>
+              <input
+                type="range"
+                min="10000"
+                max="500000"
+                step="500"
+                value={volume}
+                onChange={(e) => setVolume(Number(e.target.value))}
+                style={{
+                  width: "100%",
+                  accentColor: "#C62828",
+                  cursor: "pointer"
+                }}
+              />
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#94a3b8", marginTop: "0.5rem", fontWeight: 600 }}>
+                <span>$10K</span>
+                <span>$250K</span>
+                <span>$500K</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Results Display */}
+          <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", borderRadius: "1.5rem", padding: "2.5rem", color: "white", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
+            <div>
+              <span style={{ display: "inline-block", background: "rgba(249,115,22,0.15)", color: "#ffedd5", border: "1px solid rgba(249,115,22,0.3)", fontSize: "0.7rem", fontWeight: 700, padding: "0.25rem 0.75rem", borderRadius: "99px", marginBottom: "1.5rem", letterSpacing: "0.05em" }}>ESTIMATED OUTCOME</span>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                {/* Saved amount */}
+                <div>
+                  <p style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Middleman Markups Saved</p>
+                  <p style={{ fontSize: "3rem", fontWeight: 900, color: "#22c55e", lineHeight: 1.1 }}>+ ${savedAmount.toLocaleString()}</p>
+                  <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>({(markupPct * 100).toFixed(0)}% trading markup eliminated)</p>
+                </div>
+
+                {/* Direct Factory Cost */}
+                <div>
+                  <p style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Your Landed Factory Gate Cost</p>
+                  <p style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f8fafc" }}>${directCost.toLocaleString()}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Sourcing CTA */}
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1.5rem", marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+              <div>
+                <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "#cbd5e1" }}>Transit Time Guarantee</p>
+                <p style={{ fontSize: "0.72rem", color: "#94a3b8" }}>Sea: 30–35 Days | Air: 7–9 Days</p>
+              </div>
+              <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#C62828", color: "white", textDecoration: "none", fontSize: "0.85rem", fontWeight: 700, padding: "0.75rem 1.25rem", borderRadius: "0.75rem", transition: "background 0.2s" }}>
+                Claim Sourcing Quote <ArrowRight size={14} />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }
