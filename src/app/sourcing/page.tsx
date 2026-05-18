@@ -270,32 +270,6 @@ export default function SourcingPage() {
         </div>
       </section>
 
-      {/* ── Product Categories ── */}
-      <section className="section" style={{ background: "#F8FAFC" }}>
-        <div className="container">
-          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Specializations</span>
-            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Product Specialization Catalog</h2>
-            <p style={{ color: "#64748b", maxWidth: "480px", margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.65 }}>
-              Categories we actively source and have established factory relationships in.
-            </p>
-          </motion.div>
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.15 }}
-            style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}
-          >
-            {categories.map((cat, i) => (
-              <span
-                key={i}
-                style={{ background: "white", border: "1px solid #e2e8f0", color: "#475569", fontWeight: 600, fontSize: "0.85rem", padding: "0.6rem 1.25rem", borderRadius: "99px", cursor: "default", transition: "all 0.25s", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}
-              >
-                {cat}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ── Bottom CTA ── */}
       <section className="section bg-white">
