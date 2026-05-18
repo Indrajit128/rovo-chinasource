@@ -39,7 +39,7 @@ const whyUs = [
     icon: CheckCircle2, 
     title: "Local China Presence",      
     desc: "Our bilingual team operates directly from Guangzhou — we negotiate in Mandarin, in person, at the factory gate.",
-    img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop"
   },
   { 
     icon: CheckCircle2, 
