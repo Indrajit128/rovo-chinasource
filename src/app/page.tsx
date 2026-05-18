@@ -325,7 +325,7 @@ export default function Home() {
               
               <div className="floating-badges">
                 <div className="experience-badge-glass">
-                  <strong>15+</strong>
+                  <strong>18+</strong>
                   <span>Years</span>
                 </div>
                 <div className="experience-badge-glass cyan-border">

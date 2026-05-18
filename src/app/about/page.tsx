@@ -11,7 +11,7 @@ const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0
 const stats = [
   { val: "10,000+", label: "Delivered Shipments" },
   { val: "850+",   label: "Verified Suppliers" },
-  { val: "12+",    label: "Years Sourcing" },
+  { val: "18+",    label: "Years Experience" },
   { val: "35%",    label: "Average Cost Savings" },
 ];
 
@@ -22,7 +22,7 @@ const values = [
 ];
 
 const team = [
-  { name: "Founder & CEO",       initials: "RS", color: "#C62828", tagline: "China–India trade veteran, 12+ years" },
+  { name: "Founder & CEO",       initials: "RS", color: "#C62828", tagline: "China–India trade veteran, 18+ years" },
   { name: "Head of Logistics",   initials: "HL", color: "#1E293B", tagline: "Ex-Maersk supply chain expert" },
   { name: "Chief Sourcing Director", initials: "CS", color: "#0F766E", tagline: "Guangzhou Sourcing Hub lead" },
   { name: "Customs Officer",     initials: "CO", color: "#4F46E5", tagline: "Pan-India compliance team leader" },
