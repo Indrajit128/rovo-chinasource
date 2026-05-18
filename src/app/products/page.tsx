@@ -1,99 +1,220 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Search, X, Package, SlidersHorizontal } from "lucide-react";
 import { allProducts } from "./data";
 
-const categories = ["All", "Electronics", "Furniture", "Decor", "Apparel", "Industrial"];
+const CATEGORIES = ["All", "Electronics", "Furniture", "Decor", "Apparel", "Industrial"];
+
+const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } };
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredProducts = activeCategory === "All" 
-    ? allProducts 
-    : allProducts.filter(p => p.category === activeCategory);
+  const filteredProducts = useMemo(() => {
+    return allProducts.filter((p) => {
+      const matchesCategory = activeCategory === "All" || p.category === activeCategory;
+      const matchesSearch =
+        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.desc.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
+  const countFor = (cat: string) =>
+    cat === "All"
+      ? allProducts.length
+      : allProducts.filter((p) => p.category === cat).length;
 
   return (
-    <main className="min-h-screen bg-[#F8FAFC] pt-[120px] pb-24 font-inter">
-      <section className="container">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
-        >
-          <span className="inline-block tracking-[0.2em] uppercase text-xs font-bold text-[#f97316] mb-4">Portfolio</span>
-          <h1 className="font-inter font-black text-4xl md:text-5xl text-[#0F172A] mb-6 tracking-tight">Product Catalog</h1>
-          <p className="text-[#4A5568] text-lg max-w-2xl mx-auto leading-relaxed">
-            Discover our extensive range of high-quality products sourced directly from premier manufacturing hubs.
-          </p>
-        </motion.div>
+    <main style={{ minHeight: "100vh", background: "#F8FAFC" }}>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeCategory === cat 
-                  ? "bg-[#0F172A] text-white shadow-lg" 
-                  : "bg-white text-[#4A5568] border border-gray-200 hover:border-[#0F172A] hover:text-[#0F172A]"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+      {/* ── Dark Hero Banner ── */}
+      <section className="product-catalog-hero">
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <motion.div {...fadeUp} transition={{ duration: 0.6 }}>
+            <div className="product-hero-eyebrow">
+              <Package size={12} style={{ color: "#f97316" }} />
+              Sourcing Portfolio
+            </div>
+            <h1 className="product-hero-title">
+              Product <span>Catalog</span>
+            </h1>
+            <p className="product-hero-sub">
+              {allProducts.length} verified products across 5 categories, sourced directly from
+              certified manufacturers in China.
+            </p>
+
+            {/* Stats Row */}
+            <div className="product-hero-stats">
+              {[
+                { label: "Total Products", value: allProducts.length },
+                { label: "Categories",     value: 5 },
+                { label: "Min MOQ",        value: "10 Units" },
+                { label: "Lead Time",      value: "15–45 Days" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="product-hero-stat-value">{s.value}</p>
+                  <p className="product-hero-stat-label">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Search Bar */}
+            <div className="product-search-wrap">
+              <span className="product-search-icon">
+                <Search size={15} />
+              </span>
+              <input
+                type="text"
+                placeholder="Search products…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="product-search-input"
+              />
+              {searchQuery && (
+                <button className="product-search-clear" onClick={() => setSearchQuery("")}>
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+          </motion.div>
         </div>
+      </section>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredProducts.map((product, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: idx % 4 * 0.1 }}
-              className="bg-white rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100"
-            >
-              <div className="relative w-full h-48 overflow-hidden bg-gray-100">
-                <Image 
-                  src={product.img} 
-                  alt={product.title} 
-                  fill 
-                  style={{ objectFit: 'cover' }} 
-                  className="transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-[#C62828] uppercase tracking-wider shadow-sm">
-                  {product.category}
-                </div>
-              </div>
-              
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="font-inter font-bold text-lg text-[#0F172A] mb-3 leading-tight line-clamp-2">
-                  {product.title}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
-                  {product.desc}
-                </p>
-                
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Avg. MOQ</span>
-                    <span className="text-[#0F172A] font-bold text-sm">{product.moq}</span>
-                  </div>
-                  <Link 
-                    href="/contact" 
-                    className="text-[#C62828] text-sm font-bold hover:text-[#9b1c1c] transition-colors"
+      {/* ── Filter + Grid ── */}
+      <section className="section">
+        <div className="container">
+
+          {/* Filter Pills */}
+          <motion.div
+            className="product-filters-bar"
+            {...fadeUp}
+            transition={{ delay: 0.15 }}
+          >
+            <div className="product-filter-label">
+              <SlidersHorizontal size={13} />
+              Filter
+            </div>
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat;
+              const activeClass = isActive
+                ? `active-${cat === "All" ? "all" : cat}`
+                : "";
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`product-filter-btn ${activeClass}`}
+                >
+                  {cat}
+                  <span className={`product-filter-count ${isActive ? "" : "inactive"}`}>
+                    {countFor(cat)}
+                  </span>
+                </button>
+              );
+            })}
+            <div className="product-result-count">
+              Showing <strong>{filteredProducts.length}</strong>{" "}
+              {filteredProducts.length === 1 ? "product" : "products"}
+            </div>
+          </motion.div>
+
+          {/* Product Grid */}
+          <AnimatePresence mode="wait">
+            {filteredProducts.length === 0 ? (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="product-empty"
+              >
+                <Package size={48} />
+                <p>No products match your search.</p>
+                <button onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}>
+                  Clear filters
+                </button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeCategory + searchQuery}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="product-catalog-grid"
+              >
+                {filteredProducts.map((product, idx) => (
+                  <motion.div
+                    key={product.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: Math.min(idx * 0.04, 0.35), duration: 0.3 }}
+                    className="product-card"
                   >
-                    Inquire →
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                    {/* Image */}
+                    <div className="product-card-img-wrap">
+                      <Image
+                        src={product.img}
+                        alt={product.title}
+                        fill
+                        sizes="(max-width:768px) 50vw, (max-width:1200px) 33vw, 25vw"
+                        style={{ objectFit: "cover" }}
+                      />
+                      {/* Category Badge */}
+                      <span className={`product-card-badge badge-${product.category}`}>
+                        {product.category}
+                      </span>
+                      {/* Hover Overlay */}
+                      <div className="product-card-overlay">
+                        <Link href="/contact" className="product-card-overlay-btn">
+                          Request a Quote →
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Body */}
+                    <div className="product-card-body">
+                      <p className="product-card-title">{product.title}</p>
+                      <p className="product-card-desc">{product.desc}</p>
+                      <div className="product-card-footer">
+                        <div>
+                          <p className="product-card-moq-label">Avg. MOQ</p>
+                          <p className="product-card-moq-value">{product.moq}</p>
+                        </div>
+                        <Link href="/contact" className="product-card-inquire">
+                          Inquire →
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Bottom CTA */}
+          <motion.div
+            className="product-cta-block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <h2 className="product-cta-title">Can&apos;t find what you need?</h2>
+            <p className="product-cta-sub">
+              Our sourcing team can locate and verify any product from our network of 2,000+
+              certified Chinese manufacturers.
+            </p>
+            <Link href="/contact" className="product-cta-btn">
+              Submit Custom Sourcing Request
+            </Link>
+          </motion.div>
         </div>
       </section>
     </main>
