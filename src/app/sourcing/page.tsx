@@ -12,14 +12,62 @@ import {
 const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true } };
 
 const process = [
-  { num: "01", icon: Search,      title: "Requirement Briefing",     desc: "We start with a thorough consultation to analyze your product specs, materials, quality standards, and target Indian landed cost." },
-  { num: "02", icon: Users,       title: "Supplier Discovery",       desc: "Our China-based procurement team scans our network of 850+ pre-vetted direct factories in Guangdong and Zhejiang." },
-  { num: "03", icon: ShieldCheck, title: "Factory Vetting & Audit",  desc: "We physically visit factory premises, inspect raw inventories, check machinery age, and verify business licenses." },
-  { num: "04", icon: DollarSign,  title: "Direct Price Negotiation", desc: "Our local Chinese trade negotiators secure the absolute best factory prices, payment terms, and timelines on your behalf." },
-  { num: "05", icon: Package,     title: "Sample Evaluation",        desc: "We coordinate custom prototyping, QC test the samples, and express ship them to India for your final approval." },
-  { num: "06", icon: BarChart3,   title: "Production Monitoring",    desc: "Once deposit is paid, our local agents oversee production milestones to ensure manufacturing remains on-schedule." },
-  { num: "07", icon: ShieldCheck, title: "Pre-Shipment QC Audit",    desc: "Our certified quality engineers run full AQL inspections on packed cartons, rejecting any defective items before container loading." },
-  { num: "08", icon: Repeat2,     title: "Logistics & Delivery",     desc: "We manage booking notes, warehouse consolidation in Guangzhou/Yiwu, and secure customs clearance to deliver to your door in India." },
+  { 
+    num: "01", 
+    icon: Search,      
+    title: "Requirement Briefing",     
+    desc: "We start with a thorough consultation to analyze your product specs, materials, quality standards, and target Indian landed cost.",
+    img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "02", 
+    icon: Users,       
+    title: "Supplier Discovery",       
+    desc: "Our China-based procurement team scans our network of 850+ pre-vetted direct factories in Guangdong and Zhejiang.",
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "03", 
+    icon: ShieldCheck, 
+    title: "Factory Vetting & Audit",  
+    desc: "We physically visit factory premises, inspect raw inventories, check machinery age, and verify business licenses.",
+    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "04", 
+    icon: DollarSign,  
+    title: "Direct Price Negotiation", 
+    desc: "Our local Chinese trade negotiators secure the absolute best factory prices, payment terms, and timelines on your behalf.",
+    img: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "05", 
+    icon: Package,     
+    title: "Sample Evaluation",        
+    desc: "We coordinate custom prototyping, QC test the samples, and express ship them to India for your final approval.",
+    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "06", 
+    icon: BarChart3,   
+    title: "Production Monitoring",    
+    desc: "Once deposit is paid, our local agents oversee production milestones to ensure manufacturing remains on-schedule.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "07", 
+    icon: ShieldCheck, 
+    title: "Pre-Shipment QC Audit",    
+    desc: "Our certified quality engineers run full AQL inspections on packed cartons, rejecting any defective items before container loading.",
+    img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=400&auto=format&fit=crop"
+  },
+  { 
+    num: "08", 
+    icon: Repeat2,     
+    title: "Logistics & Delivery",     
+    desc: "We manage booking notes, warehouse consolidation in Guangzhou/Yiwu, and secure customs clearance to deliver to your door in India.",
+    img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=400&auto=format&fit=crop"
+  },
 ];
 
 const stats = [
@@ -181,7 +229,7 @@ export default function SourcingPage() {
               A battle-tested 8-step methodology refined across hundreds of successful China–India trade operations.
             </p>
           </motion.div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "1.5rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "1.75rem" }}>
             {process.map((step, i) => {
               const Icon = step.icon;
               return (
@@ -190,16 +238,31 @@ export default function SourcingPage() {
                   {...fadeUp}
                   transition={{ delay: (i % 4) * 0.1 }}
                   className="product-card"
-                  style={{ padding: "1.75rem" }}
+                  style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", background: "white" }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                    <div style={{ width: "2.5rem", height: "2.5rem", borderRadius: "0.75rem", background: "linear-gradient(135deg,#f97316,#ef4444)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Icon size={16} color="white" />
+                  {/* Step Image */}
+                  <div style={{ position: "relative", width: "100%", height: "140px", overflow: "hidden", background: "#f8fafc" }}>
+                    <Image
+                      src={step.img}
+                      alt={step.title}
+                      fill
+                      sizes="(max-width:768px) 100vw, 25vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                    {/* Floating Step Badge */}
+                    <div style={{ position: "absolute", top: "0.75rem", left: "0.75rem", background: "rgba(255,255,255,0.9)", backdropFilter: "blur(4px)", padding: "0.25rem 0.75rem", borderRadius: "99px", display: "flex", alignItems: "center", gap: "0.35rem", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+                      <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "#C62828" }}>{step.num}</span>
                     </div>
-                    <span style={{ fontSize: "2.5rem", fontWeight: 900, color: "#f1f5f9", lineHeight: 1 }}>{step.num}</span>
+                    {/* Floating Icon */}
+                    <div style={{ position: "absolute", bottom: "0.75rem", right: "0.75rem", width: "2rem", height: "2rem", borderRadius: "50%", background: "linear-gradient(135deg,#f97316,#ef4444)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(239,68,68,0.3)" }}>
+                      <Icon size={12} color="white" />
+                    </div>
                   </div>
-                  <h4 style={{ fontSize: "0.9rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>{step.title}</h4>
-                  <p style={{ fontSize: "0.78rem", color: "#64748b", lineHeight: 1.65 }}>{step.desc}</p>
+                  {/* Step Info */}
+                  <div style={{ padding: "1.25rem 1.5rem 1.5rem", flex: 1, display: "flex", flexDirection: "column" }}>
+                    <h4 style={{ fontSize: "0.9rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>{step.title}</h4>
+                    <p style={{ fontSize: "0.78rem", color: "#64748b", lineHeight: 1.6, flex: 1 }}>{step.desc}</p>
+                  </div>
                 </motion.div>
               );
             })}
