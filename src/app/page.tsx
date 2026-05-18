@@ -327,17 +327,6 @@ export default function Home() {
               <p className="text-white-muted mb-lg" style={{ fontSize: '1.2rem', maxWidth: '500px', lineHeight: '1.6' }}>
                 We don&apos;t just move cargo; we engineer trade corridors. Experience logistics powered by advanced analytics and boots-on-the-ground precision.
               </p>
-              
-              <div className="floating-badges">
-                <div className="experience-badge-glass">
-                  <strong>18+</strong>
-                  <span>Years</span>
-                </div>
-                <div className="experience-badge-glass cyan-border">
-                  <strong>30%</strong>
-                  <span>Faster</span>
-                </div>
-              </div>
             </motion.div>
 
             {/* Right: Floating Glass Cards */}
