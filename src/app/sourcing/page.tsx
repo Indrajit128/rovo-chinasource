@@ -1,28 +1,254 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Search, Users, ShieldCheck, DollarSign,
+  Package, BarChart3, Repeat2, ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
+
+const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true } };
+
+const process = [
+  { num: "01", icon: Search,      title: "Requirement Briefing",     desc: "We start with a thorough consultation to analyze your product specs, materials, quality standards, and target Indian landed cost." },
+  { num: "02", icon: Users,       title: "Supplier Discovery",       desc: "Our China-based procurement team scans our network of 850+ pre-vetted direct factories in Guangdong and Zhejiang." },
+  { num: "03", icon: ShieldCheck, title: "Factory Vetting & Audit",  desc: "We physically visit factory premises, inspect raw inventories, check machinery age, and verify business licenses." },
+  { num: "04", icon: DollarSign,  title: "Direct Price Negotiation", desc: "Our local Chinese trade negotiators secure the absolute best factory prices, payment terms, and timelines on your behalf." },
+  { num: "05", icon: Package,     title: "Sample Evaluation",        desc: "We coordinate custom prototyping, QC test the samples, and express ship them to India for your final approval." },
+  { num: "06", icon: BarChart3,   title: "Production Monitoring",    desc: "Once deposit is paid, our local agents oversee production milestones to ensure manufacturing remains on-schedule." },
+  { num: "07", icon: ShieldCheck, title: "Pre-Shipment QC Audit",    desc: "Our certified quality engineers run full AQL inspections on packed cartons, rejecting any defective items before container loading." },
+  { num: "08", icon: Repeat2,     title: "Logistics & Delivery",     desc: "We manage booking notes, warehouse consolidation in Guangzhou/Yiwu, and secure customs clearance to deliver to your door in India." },
+];
+
+const stats = [
+  { val: "850+", label: "Verified Manufacturers", desc: "Direct access to verified suppliers across Guangdong, Zhejiang, and Jiangsu hubs." },
+  { val: "35%",  label: "Average Cost Reductions", desc: "Acquire direct factory price points by completely eliminating trading companies." },
+  { val: "100%", label: "Strict Quality Checks",   desc: "On-site AQL inspections ensure zero defect containers are loaded." },
+];
+
+const categories = [
+  "Consumer Electronics", "Office & Home Furniture", "Industrial CNC Machinery", "Home Decor & Lighting",
+  "Fashion Accessories", "Silicone Tableware", "Printed Box Packaging", "Electric Power Inverters",
+  "LED Assemblies", "Stainless Kitchenware", "B2B Hardware & Tools", "Custom Plastic Molding",
+];
+
+const whyUs = [
+  { 
+    icon: CheckCircle2, 
+    title: "Local China Presence",      
+    desc: "Our bilingual team operates directly from Guangzhou — we negotiate in Mandarin, in person, at the factory gate.",
+    img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600&auto=format&fit=crop"
+  },
+  { 
+    icon: CheckCircle2, 
+    title: "Zero Trading Companies",    
+    desc: "We connect you directly to the manufacturer, cutting out middlemen that inflate costs by 20–40%.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop"
+  },
+  { 
+    icon: CheckCircle2, 
+    title: "End-to-End Accountability", 
+    desc: "From spec sheet to delivery, one dedicated ROVO manager owns your order from start to finish.",
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop"
+  },
+  { 
+    icon: CheckCircle2, 
+    title: "India Trade Expertise",     
+    desc: "Deep knowledge of IEC, BIS, FSSAI, and other Indian import compliance standards built into every deal.",
+    img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=600&auto=format&fit=crop"
+  },
+];
 
 export default function SourcingPage() {
   return (
-    <main className="min-h-screen bg-white pt-[120px]">
-      <section className="section bg-pattern">
-        <div className="container">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="section-header centered"
-          >
-            <span className="section-eyebrow orange">Network</span>
-            <h1 className="h2-display">Strategic Sourcing</h1>
-            <p className="section-sub">Leverage our boots-on-the-ground presence in China's top manufacturing districts.</p>
-          </motion.div>
+    <main style={{ minHeight: "100vh", background: "#F8FAFC" }}>
 
-          <div style={{ padding: '4rem 0', textAlign: 'center', background: '#f8f9fa', borderRadius: '1rem', marginTop: '2rem' }}>
-            <h3 style={{ color: '#343a40', fontWeight: 500 }}>Sourcing Network Details Coming Soon</h3>
-            <p style={{ color: '#6c757d', marginTop: '0.5rem' }}>Detailed information about our factory verification and negotiation process.</p>
+      {/* ── Hero ── */}
+      <section className="product-catalog-hero" style={{ background: "none", paddingBottom: "5rem" }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <Image
+            src="/sourcing.png"
+            alt="Strategic Sourcing"
+            fill
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15,23,42,0.90) 0%, rgba(30,41,59,0.84) 60%, rgba(15,23,42,0.92) 100%)" }} />
+        </div>
+
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+            <span className="product-hero-eyebrow">
+              <Search size={12} style={{ color: "#f97316" }} />
+              Procurement Solutions
+            </span>
+            <h1 className="product-hero-title">
+              Strategic <span>Sourcing</span><br />
+              <span style={{ fontSize: "clamp(1.5rem,3.5vw,2.4rem)", fontWeight: 700, color: "rgba(255,255,255,0.75)" }}>
+                Direct from China Factories
+              </span>
+            </h1>
+            <p className="product-hero-sub" style={{ marginBottom: "2.5rem" }}>
+              Leverage our boots-on-the-ground presence in China&apos;s top manufacturing districts.
+              We handle every procurement phase locally so you build your brand risk-free.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center" }}>
+              <Link href="/contact" className="service-spotlight-btn" style={{ padding: "1rem 2rem", background: "#C62828", fontSize: "0.9rem" }}>
+                Start Sourcing <ArrowRight size={16} style={{ display: "inline", marginLeft: "0.35rem" }} />
+              </Link>
+              <a href="#process" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "white", fontWeight: 600, padding: "1rem 2rem", borderRadius: "99px", fontSize: "0.9rem", textDecoration: "none", transition: "background 0.2s" }}>
+                See Sourcing Flow
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section className="section bg-white">
+        <div className="container">
+          <motion.div {...fadeUp} transition={{ duration: 0.5 }} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Why Partner With Us</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>
+              Sourcing That Protects Your Bottom Line
+            </h2>
+          </motion.div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "2rem" }}>
+            {stats.map((s, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ delay: i * 0.12 }}
+                style={{ background: "#F8FAFC", borderRadius: "1.5rem", padding: "2.5rem", textAlign: "center", border: "1px solid #e2e8f0" }}
+              >
+                <p style={{ fontSize: "3.5rem", fontWeight: 900, background: "linear-gradient(135deg,#f97316,#ef4444)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: "0.5rem" }}>{s.val}</p>
+                <h4 style={{ fontSize: "1rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.75rem" }}>{s.label}</h4>
+                <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.65 }}>{s.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ── Why Us ── */}
+      <section className="section" style={{ background: "#F8FAFC" }}>
+        <div className="container">
+          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Our Advantage</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>What Sets ROVO Apart</h2>
+          </motion.div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: "1.75rem" }}>
+            {whyUs.map((w, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ delay: i * 0.1 }}
+                style={{ background: "white", borderRadius: "1.5rem", overflow: "hidden", border: "1px solid #f1f5f9", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}
+              >
+                {/* Image Section */}
+                <div style={{ position: "relative", width: "100%", height: "180px", overflow: "hidden", background: "#f8fafc" }}>
+                  <Image 
+                    src={w.img} 
+                    alt={w.title} 
+                    fill 
+                    sizes="(max-width:768px) 100vw, 50vw"
+                    style={{ objectFit: "cover" }} 
+                  />
+                  <div style={{ position: "absolute", top: "1rem", left: "1rem", width: "2.25rem", height: "2.25rem", borderRadius: "0.75rem", background: "rgba(255,255,255,0.9)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
+                    <CheckCircle2 size={15} style={{ color: "#C62828" }} />
+                  </div>
+                </div>
+                {/* Content Section */}
+                <div style={{ padding: "1.5rem 1.75rem 1.75rem", flex: 1, display: "flex", flexDirection: "column" }}>
+                  <h4 style={{ fontSize: "1rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>{w.title}</h4>
+                  <p style={{ fontSize: "0.82rem", color: "#64748b", lineHeight: 1.6, flex: 1 }}>{w.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8-Step Process ── */}
+      <section id="process" className="section bg-white">
+        <div className="container">
+          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Procurement Timeline</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Our Proven Sourcing Process</h2>
+            <p style={{ color: "#64748b", maxWidth: "560px", margin: "0 auto", fontSize: "1rem", lineHeight: 1.65 }}>
+              A battle-tested 8-step methodology refined across hundreds of successful China–India trade operations.
+            </p>
+          </motion.div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "1.5rem" }}>
+            {process.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={i}
+                  {...fadeUp}
+                  transition={{ delay: (i % 4) * 0.1 }}
+                  className="product-card"
+                  style={{ padding: "1.75rem" }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
+                    <div style={{ width: "2.5rem", height: "2.5rem", borderRadius: "0.75rem", background: "linear-gradient(135deg,#f97316,#ef4444)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Icon size={16} color="white" />
+                    </div>
+                    <span style={{ fontSize: "2.5rem", fontWeight: 900, color: "#f1f5f9", lineHeight: 1 }}>{step.num}</span>
+                  </div>
+                  <h4 style={{ fontSize: "0.9rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.5rem" }}>{step.title}</h4>
+                  <p style={{ fontSize: "0.78rem", color: "#64748b", lineHeight: 1.65 }}>{step.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Product Categories ── */}
+      <section className="section" style={{ background: "#F8FAFC" }}>
+        <div className="container">
+          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Specializations</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Product Specialization Catalog</h2>
+            <p style={{ color: "#64748b", maxWidth: "480px", margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.65 }}>
+              Categories we actively source and have established factory relationships in.
+            </p>
+          </motion.div>
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.15 }}
+            style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}
+          >
+            {categories.map((cat, i) => (
+              <span
+                key={i}
+                style={{ background: "white", border: "1px solid #e2e8f0", color: "#475569", fontWeight: 600, fontSize: "0.85rem", padding: "0.6rem 1.25rem", borderRadius: "99px", cursor: "default", transition: "all 0.25s", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}
+              >
+                {cat}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Bottom CTA ── */}
+      <section className="section bg-white">
+        <div className="container">
+          <motion.div {...fadeUp} className="product-cta-block">
+            <h2 className="product-cta-title">Ready to Source Smarter?</h2>
+            <p className="product-cta-sub">
+              Submit your sourcing brief today and our Guangzhou team will respond with a shortlist of verified manufacturers within 24 hours.
+            </p>
+            <Link href="/contact" className="product-cta-btn">
+              Submit Sourcing Brief <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
     </main>
   );
 }
