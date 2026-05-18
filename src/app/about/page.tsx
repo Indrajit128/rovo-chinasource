@@ -161,31 +161,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Leadership Team ── */}
-      <section className="section" style={{ background: "#F8FAFC" }}>
-        <div className="container">
-          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>LEADERSHIP</span>
-            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>The Sourcing Experts Behind ROVO</h2>
-          </motion.div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "2rem" }}>
-            {team.map((member, i) => (
-              <motion.div
-                key={i}
-                {...fadeUp}
-                transition={{ delay: i * 0.1 }}
-                style={{ background: "white", padding: "2.5rem 2rem", borderRadius: "1.5rem", textAlign: "center", border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}
-              >
-                <div style={{ width: "4.5rem", height: "4.5rem", borderRadius: "1.25rem", backgroundColor: member.color, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.35rem", fontWeight: 800, margin: "0 auto 1.25rem", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
-                  {member.initials}
-                </div>
-                <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.25rem" }}>{member.name}</h4>
-                <p style={{ fontSize: "0.78rem", color: "#64748b", lineHeight: 1.4 }}>{member.tagline}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Bottom CTA ── */}
       <section className="section bg-white">
