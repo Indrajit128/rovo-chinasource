@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, MotionProps } from "framer-motion";
 import { 
@@ -15,7 +16,8 @@ import {
   ClipboardCheck,
   Truck,
   ShieldCheck,
-  Ship
+  Ship,
+  Plane
 } from "lucide-react";
 
 const fadeUp: MotionProps = {
@@ -32,28 +34,47 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!mounted) return;
+    const cards = document.querySelectorAll('.spotlight-card');
+    cards.forEach((card) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+      (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+    });
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <section className="hero">
         <Image
-          src="/ship_2.png"
-          alt="ROVO Global Logistics"
+          src="/hero image.png"
+          alt="ROVO ChinaSourcing"
           fill
           className="hero-image"
           priority
         />
-        <div className="hero-overlay hero-gradient-custom" />
 
         <div className="hero-container">
-          <div className="hero-left" style={{ padding: '0', paddingTop: '6rem', maxWidth: '650px' }}>
+          <div 
+            className="hero-left" 
+            style={{ 
+              padding: '0', 
+              paddingTop: '6rem', 
+              maxWidth: '850px' 
+            }}
+          >
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="h1-hero"
-              style={{ marginBottom: '2rem' }}
+              style={{ marginBottom: '2rem', color: '#2D3748', fontSize: 'clamp(2rem, 4.5vw, 3.25rem)', fontWeight: '700', lineHeight: '1.2' }}
             >
-              Smart Import Management<br />Between China & India
+              Your Trusted Partner for<br />
+              importing from China to India
             </motion.h1>
             
             <motion.p 
@@ -61,9 +82,9 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-body-large hero-sub"
-              style={{ maxWidth: '500px', marginBottom: '3rem' }}
+              style={{ maxWidth: '750px', marginBottom: '3rem', color: '#4A5568', fontSize: '1.15rem', fontWeight: '400', lineHeight: '1.6' }}
             >
-              Architecting high-velocity supply chains between China and India. Engineered for scale, reliability, and absolute transparency.
+              Your direct gateway to verified Chinese manufacturers, rigorous quality vetting, and secure door-to-door logistics across India.
             </motion.p>
             
             <motion.div 
@@ -72,8 +93,36 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="hero-cta-row"
             >
-              <button className="btn-primary" style={{ padding: '1.25rem 2.5rem', borderRadius: '0.75rem' }}>Track Orders</button>
-              <button className="btn-ghost glass" style={{ padding: '1.25rem 2.5rem', borderRadius: '0.75rem', border: '1px solid rgba(255,255,255,0.1)' }}>Learn More</button>
+              <button 
+                className="btn-primary" 
+                style={{ 
+                  padding: '1.25rem 2.5rem', 
+                  borderRadius: '9999px',
+                  background: '#C62828',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  boxShadow: '0 10px 15px -3px rgba(198, 40, 40, 0.3)',
+                  cursor: 'pointer'
+                }}
+              >
+                Get Started
+              </button>
+              <button 
+                className="btn-primary" 
+                style={{ 
+                  padding: '1.25rem 2.5rem', 
+                  borderRadius: '9999px', 
+                  background: '#000000',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
+                  cursor: 'pointer'
+                }}
+              >
+                Learn How It Works
+              </button>
             </motion.div>
           </div>
 
@@ -82,56 +131,238 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US — ANIMATED */}
-      <section className="section bg-warm-gray overflow-hidden">
+      {/* SERVICES OVERVIEW */}
+      <section className="section bg-warm-gray">
         <div className="container">
-          <div className="split-layout">
-            <motion.div {...fadeUp} className="split-content">
-              <span className="section-eyebrow">Excellence</span>
-              <h2 className="h2-display">The ROVO Standard</h2>
-              <p className="mb-md">We don&apos;t just move cargo; we engineer trade corridors. Our local presence in both Guangzhou and Hong Kong ensures boots-on-the-ground control over every shipment.</p>
+          <motion.div {...fadeUp} className="section-header centered">
+            <span className="section-eyebrow orange" style={{ letterSpacing: '0.2em', textTransform: 'uppercase' }}>Visual Spotlight</span>
+            <h2 className="h2-display" style={{ marginBottom: '1.5rem' }}>Core Services</h2>
+            <p className="section-sub" style={{ maxWidth: '700px', margin: '0 auto', color: '#4A5568', fontSize: '1.15rem', lineHeight: '1.6' }}>
+              Managed directly on the factory floors in China by our bilingual trade and logistics specialists.
+            </p>
+          </motion.div>
+
+          <div className="service-spotlight-grid">
+            {/* Service 1: Sea Cargo */}
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1000&auto=format&fit=crop" alt="Sea Cargo" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">Sea Cargo Logistics</span>
+                <h3 className="service-spotlight-title">Sea Cargo</h3>
+                <p className="service-spotlight-desc">High-capacity ocean container transport directly from China ports (Shenzhen, Ningbo, Shanghai) to Nhava Sheva, Chennai, and Kolkata trade terminals.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Typical Transit:</span>
+                    <span className="service-spotlight-spec-value">14 - 18 Days</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Port Terminals:</span>
+                    <span className="service-spotlight-spec-value">All Major India Ports</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Inquire Sea Cargo</Link>
+              </div>
+            </motion.div>
+
+            {/* Service 2: Air Freight */}
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=1000&auto=format&fit=crop" alt="Air Freight" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">Air Freight Logistics</span>
+                <h3 className="service-spotlight-title">Air Freight</h3>
+                <p className="service-spotlight-desc">Express international air freight solutions for high-value components, urgent production batches, or lightweight retail collections directly to Delhi, Mumbai, and Bangalore airport hubs.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Typical Transit:</span>
+                    <span className="service-spotlight-spec-value">3 - 5 Days</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Service Type:</span>
+                    <span className="service-spotlight-spec-value">Airport-to-Airport & DDP</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Inquire Air Freight</Link>
+              </div>
+            </motion.div>
+
+            {/* Service 3: LCL Shipping */}
+            <motion.div {...fadeUp} transition={{ delay: 0.3 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="LCL Shipping" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">LCL Shipping Consolidation</span>
+                <h3 className="service-spotlight-title">LCL Shipping</h3>
+                <p className="service-spotlight-desc">Less-than-Container-Load shipping. Pay only for the volume you occupy (CBM). We consolidate small boxes from separate manufacturers in our warehouses to minimize your costs.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Minimum Volume:</span>
+                    <span className="service-spotlight-spec-value">1 CBM</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Free Storage:</span>
+                    <span className="service-spotlight-spec-value">Up to 30 Days</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Inquire LCL Shipping</Link>
+              </div>
+            </motion.div>
+
+            {/* Service 4: FCL Shipping */}
+            <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000&auto=format&fit=crop" alt="FCL Container Logistics" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">FCL Container Logistics</span>
+                <h3 className="service-spotlight-title">FCL Shipping</h3>
+                <p className="service-spotlight-desc">Dedicated Full-Container-Load solutions (20' GP, 40' GP, 40' HQ). We manage supplier bookings, haul containers directly to factories, supervise loading, and secure low ocean freight contracts.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Container Sizes:</span>
+                    <span className="service-spotlight-spec-value">20' GP / 40' GP / 40' HQ</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Load Supervision:</span>
+                    <span className="service-spotlight-spec-value">Full Video & Seal Reports</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Inquire FCL Shipping</Link>
+              </div>
+            </motion.div>
+
+            {/* Service 5: Sourcing */}
+            <motion.div {...fadeUp} transition={{ delay: 0.5 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" alt="Product Sourcing & OEM" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">Product Sourcing & OEM</span>
+                <h3 className="service-spotlight-title">Sourcing</h3>
+                <p className="service-spotlight-desc">We match you with top-tier, certified Chinese manufacturers. Our fluent ground agents negotiate low pricing, establish bilingual legal contracts, and coordinate factory production runs.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Factory Hubs:</span>
+                    <span className="service-spotlight-spec-value">Shenzhen, Foshan, Yiwu, Guangzhou</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">OEM / ODM:</span>
+                    <span className="service-spotlight-spec-value">Full Mold & Packing Customization</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Start Supplier Search</Link>
+              </div>
+            </motion.div>
+
+            {/* Service 6: Import */}
+            <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="service-spotlight-card">
+              <div className="service-spotlight-img-wrapper">
+                <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000&auto=format&fit=crop" alt="Import & Customs Clearance" fill style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="service-spotlight-content">
+                <span className="service-spotlight-tagline">Import & Customs Clearance</span>
+                <h3 className="service-spotlight-title">Import</h3>
+                <p className="service-spotlight-desc">Our expert domestic Indian custom desks handle correct HS Code classification, active custom duty calculation, file Bill of Entries, manage inspections, and release cargo immediately.</p>
+                <div className="service-spotlight-specs">
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Custom Brokerage:</span>
+                    <span className="service-spotlight-spec-value">In-House Licensed CHA</span>
+                  </div>
+                  <div className="service-spotlight-spec-row">
+                    <span className="service-spotlight-spec-label">Compliance:</span>
+                    <span className="service-spotlight-spec-value">BIS, WPC, EPR, Allied Acts Clearances</span>
+                  </div>
+                </div>
+                <Link href="/contact" className="service-spotlight-btn">Consult Custom</Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US — OPTION 3: FLOATING GLASSMORPHISM */}
+      <section className="section bg-deep-navy relative overflow-hidden" style={{ minHeight: '800px', display: 'flex', alignItems: 'center' }}>
+        {/* Fluid Gradient Background */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <div className="fluid-blob fluid-blob-1" />
+          <div className="fluid-blob fluid-blob-2" />
+        </div>
+
+        <div className="container relative z-10 w-full">
+          <div className="floating-layout">
+            {/* Left: Content */}
+            <motion.div {...fadeUp} className="floating-content-col">
+              <span className="section-eyebrow text-cyan" style={{ display: 'block', marginBottom: '1rem' }}>Excellence</span>
+              <h2 className="h2-display text-white">
+                The ROVO Standard
+              </h2>
+              <p className="text-white-muted mb-lg" style={{ fontSize: '1.2rem', maxWidth: '500px', lineHeight: '1.6' }}>
+                We don&apos;t just move cargo; we engineer trade corridors. Experience logistics powered by advanced analytics and boots-on-the-ground precision.
+              </p>
               
-              <div className="feature-item-visual">
-                <div className="feature-icon-small"><Zap size={18} /></div>
-                <div>
-                  <h4>High-Velocity Operations</h4>
-                  <p>Reducing lead times by 30% through optimized factory-to-port routes.</p>
+              <div className="floating-badges">
+                <div className="experience-badge-glass">
+                  <strong>15+</strong>
+                  <span>Years</span>
                 </div>
-              </div>
-              <div className="feature-item-visual">
-                <div className="feature-icon-small"><BarChart3 size={18} /></div>
-                <div>
-                  <h4>Real-Time Intelligence</h4>
-                  <p>Full visibility into your cargo&apos;s journey with data-driven tracking.</p>
-                </div>
-              </div>
-              <div className="feature-item-visual">
-                <div className="feature-icon-small"><Globe size={18} /></div>
-                <div>
-                  <h4>Global Infrastructure</h4>
-                  <p>Boots on the ground in Guangzhou, Hong Kong, and across major Indian ports.</p>
+                <div className="experience-badge-glass cyan-border">
+                  <strong>30%</strong>
+                  <span>Faster</span>
                 </div>
               </div>
             </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="split-visual"
-            >
-              <div className="experience-badge glass">
-                <strong className="text-white">15+</strong>
-                <span className="text-white">Years</span>
-              </div>
-              <Image 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop" 
-                alt="Logistics center"
-                width={600}
-                height={800}
-                className="image-cover rounded-lg"
-              />
-            </motion.div>
+
+            {/* Right: Floating Glass Cards */}
+            <div className="floating-cards-col" onMouseMove={handleMouseMove}>
+              {/* Card 1 */}
+              <motion.div 
+                className="floating-glass-card spotlight-card card-pos-1"
+                animate={mounted ? { y: [0, -15, 0] } : {}}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="relative z-10">
+                  <div className="icon-ring orange">
+                    <Zap size={24} color="#f97316" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>High-Velocity Operations</h3>
+                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Optimized factory-to-port routing cutting lead times drastically.</p>
+                </div>
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div 
+                className="floating-glass-card spotlight-card card-pos-2"
+                animate={mounted ? { y: [0, 20, 0] } : {}}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <div className="relative z-10">
+                  <div className="icon-ring blue">
+                    <BarChart3 size={24} color="#3b82f6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>Real-Time Intelligence</h3>
+                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Full visibility into your cargo&apos;s journey with predictive tracking.</p>
+                </div>
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div 
+                className="floating-glass-card spotlight-card card-pos-3"
+                animate={mounted ? { y: [0, -10, 0] } : {}}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              >
+                <div className="relative z-10">
+                  <div className="icon-ring emerald">
+                    <Globe size={24} color="#10b981" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontSize: '1.3rem' }}>Global Infrastructure</h3>
+                  <p className="text-white-muted" style={{ fontSize: '0.9rem' }}>Boots on the ground in Guangzhou, Hong Kong, and major Indian ports.</p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
