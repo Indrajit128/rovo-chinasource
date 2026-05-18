@@ -51,6 +51,7 @@ export default function Navbar() {
           <Link href="/services" className="nav-link" style={{ color: '#0F172A' }}>Services</Link>
           <Link href="/products" className="nav-link" style={{ color: '#0F172A' }}>Product Category</Link>
           <Link href="/sourcing" className="nav-link" style={{ color: '#0F172A' }}>Sourcing</Link>
+          <Link href="/about" className="nav-link" style={{ color: '#0F172A' }}>About Us</Link>
           <Link href="/contact" className="nav-link" style={{ color: '#0F172A' }}>Contact Details</Link>
         </nav>
 

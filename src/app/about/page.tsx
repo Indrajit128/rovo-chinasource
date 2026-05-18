@@ -1,0 +1,207 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Target, Eye, Heart, Shield, Award, Sparkles } from "lucide-react";
+
+const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true } };
+
+const stats = [
+  { val: "10,000+", label: "Delivered Shipments" },
+  { val: "850+",   label: "Verified Suppliers" },
+  { val: "12+",    label: "Years Sourcing" },
+  { val: "35%",    label: "Average Cost Savings" },
+];
+
+const values = [
+  { icon: Target, title: "Precision Sourcing", desc: "Every supplier vetted and every single factory audit conducted with rigorous, physical inspection protocols." },
+  { icon: Heart,  title: "Client Commitment",  desc: "We treat your sourcing volumes like our own, negotiating direct factory costs to maximize your B2B margins." },
+  { icon: Eye,    title: "Extreme Transparency", desc: "No hidden commissions, no factory kickbacks. Zero pricing markup. Fully transparent invoices." },
+];
+
+const team = [
+  { name: "Founder & CEO",       initials: "RS", color: "#C62828", tagline: "China–India trade veteran, 12+ years" },
+  { name: "Head of Logistics",   initials: "HL", color: "#1E293B", tagline: "Ex-Maersk supply chain expert" },
+  { name: "Chief Sourcing Director", initials: "CS", color: "#0F766E", tagline: "Guangzhou Sourcing Hub lead" },
+  { name: "Customs Officer",     initials: "CO", color: "#4F46E5", tagline: "Pan-India compliance team leader" },
+];
+
+export default function AboutPage() {
+  return (
+    <main style={{ minHeight: "100vh", background: "#F8FAFC" }}>
+
+      {/* ── Hero Banner ── */}
+      <section className="product-catalog-hero" style={{ background: "none", paddingBottom: "5rem" }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <Image
+            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop"
+            alt="About ROVO ChinaSourcing"
+            fill
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.85) 60%, rgba(15,23,42,0.94) 100%)" }} />
+        </div>
+
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} style={{ textAlign: "center" }}>
+              <span className="product-hero-eyebrow" style={{ margin: "0 auto" }}>
+                <Sparkles size={12} style={{ color: "#f97316" }} />
+                About ROVO ChinaSourcing
+              </span>
+              <h1 className="product-hero-title" style={{ marginTop: "1.5rem" }}>
+                Your Trusted <span>China–India</span><br />
+                Sourcing Partner
+              </h1>
+              <p className="product-hero-sub" style={{ marginBottom: "2.5rem", maxWidth: "680px", marginLeft: "auto", marginRight: "auto" }}>
+                Empowering Indian importers to securely source, verify, inspect, and ship high-quality products directly from Chinese factories.
+              </p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Link href="/contact" className="service-spotlight-btn" style={{ padding: "1rem 2.5rem", background: "#C62828" }}>
+                  Partner With Us <ArrowRight size={16} style={{ display: "inline", marginLeft: "0.35rem" }} />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Quick Stats Grid ── */}
+      <section className="section bg-white" style={{ paddingTop: "4rem", paddingBottom: "4rem", borderBottom: "1px solid #f1f5f9" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "2rem" }}>
+            {stats.map((s, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ delay: i * 0.1 }}
+                style={{ textAlign: "center" }}
+              >
+                <h3 style={{ fontSize: "2.75rem", fontWeight: 900, color: "#C62828", marginBottom: "0.25rem" }}>{s.val}</h3>
+                <p style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 600 }}>{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Journey Story ── */}
+      <section className="section" style={{ background: "#F8FAFC" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))", gap: "4rem", alignItems: "center" }}>
+            
+            {/* Story Visual */}
+            <motion.div {...fadeUp}>
+              <div style={{ position: "relative", width: "100%", height: "380px", borderRadius: "1.5rem", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 10px 30px rgba(0,0,0,0.04)" }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop"
+                  alt="China to India Sourcing"
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.2) 60%, transparent 100%)" }} />
+                <div style={{ position: "absolute", bottom: "2rem", left: "2rem", right: "2rem", color: "white" }}>
+                  <span style={{ display: "inline-block", background: "#f97316", color: "white", fontSize: "0.75rem", fontWeight: 700, padding: "0.25rem 0.75rem", borderRadius: "99px", marginBottom: "0.75rem" }}>LAUNCHED 2014</span>
+                  <h4 style={{ fontSize: "1.25rem", fontWeight: 800 }}>China to India Direct Trade</h4>
+                  <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.8)", marginTop: "0.25rem" }}>Secure, Direct Factory Procurement Solutions</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Story Content */}
+            <motion.div {...fadeUp} transition={{ delay: 0.15 }}>
+              <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>OUR JOURNEY</span>
+              <h2 className="h2-display" style={{ marginBottom: "1.5rem" }}>
+                Solving the Cross-Border Risk
+              </h2>
+              <p style={{ fontSize: "0.9rem", color: "#64748b", lineHeight: 1.7, marginBottom: "1rem" }}>
+                ROVO ChinaSourcing was born from a fundamental trade bottleneck: Indian businesses struggled to securely coordinate with manufacturers in China due to language barriers, hidden middleman commissions, high quality-defect ratios, and complex customs documentation.
+              </p>
+              <p style={{ fontSize: "0.9rem", color: "#64748b", lineHeight: 1.7, marginBottom: "1rem" }}>
+                We built the ultimate B2B infrastructure with our own team based locally in Guangzhou to inspect factories, manage quality control at the manufacturing line, translate briefs, and clear Indian customs hassle-free.
+              </p>
+              <p style={{ fontSize: "0.9rem", color: "#64748b", lineHeight: 1.7 }}>
+                Today, ROVO ChinaSourcing is the most trusted procurement partner for active Indian brands, handling sourcing across electronics, furniture, machinery, kitchenware, and textiles.
+              </p>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Core Values ── */}
+      <section className="section bg-white">
+        <div className="container">
+          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>OUR VALUES</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>The Values That Guide Us</h2>
+          </motion.div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "2rem" }}>
+            {values.map((v, i) => {
+              const Icon = v.icon;
+              return (
+                <motion.div
+                  key={i}
+                  {...fadeUp}
+                  transition={{ delay: i * 0.12 }}
+                  className="product-card"
+                  style={{ padding: "2.5rem", textAlign: "center", border: "1px solid #f1f5f9" }}
+                >
+                  <div style={{ width: "3.5rem", height: "3.5rem", borderRadius: "1rem", background: "#FEF2F2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
+                    <Icon size={24} style={{ color: "#C62828" }} />
+                  </div>
+                  <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.75rem" }}>{v.title}</h3>
+                  <p style={{ fontSize: "0.82rem", color: "#64748b", lineHeight: 1.65 }}>{v.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Leadership Team ── */}
+      <section className="section" style={{ background: "#F8FAFC" }}>
+        <div className="container">
+          <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>LEADERSHIP</span>
+            <h2 className="h2-display" style={{ marginBottom: "1rem" }}>The Sourcing Experts Behind ROVO</h2>
+          </motion.div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "2rem" }}>
+            {team.map((member, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ delay: i * 0.1 }}
+                style={{ background: "white", padding: "2.5rem 2rem", borderRadius: "1.5rem", textAlign: "center", border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}
+              >
+                <div style={{ width: "4.5rem", height: "4.5rem", borderRadius: "1.25rem", backgroundColor: member.color, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.35rem", fontWeight: 800, margin: "0 auto 1.25rem", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
+                  {member.initials}
+                </div>
+                <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: "#0F172A", marginBottom: "0.25rem" }}>{member.name}</h4>
+                <p style={{ fontSize: "0.78rem", color: "#64748b", lineHeight: 1.4 }}>{member.tagline}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Bottom CTA ── */}
+      <section className="section bg-white">
+        <div className="container">
+          <motion.div {...fadeUp} className="product-cta-block">
+            <h2 className="product-cta-title">Ready to Settle Your Import Supply Chain?</h2>
+            <p className="product-cta-sub">
+              Partner with the industry leaders in China–India cross-border trade, verification, and end-to-end procurement.
+            </p>
+            <Link href="/contact" className="product-cta-btn">
+              Partner With Us <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+    </main>
+  );
+}
