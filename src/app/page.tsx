@@ -146,7 +146,7 @@ export default function Home() {
             {/* Service 1: Sea Cargo */}
             <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="service-spotlight-card">
               <div className="service-spotlight-img-wrapper">
-                <Image src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1000&auto=format&fit=crop" alt="Sea Cargo" fill style={{ objectFit: 'cover' }} />
+                <Image src="/sea cargo.png" alt="Sea Cargo" fill style={{ objectFit: 'cover' }} />
               </div>
               <div className="service-spotlight-content">
                 <span className="service-spotlight-tagline">Sea Cargo Logistics</span>
@@ -189,56 +189,10 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 3: LCL Shipping */}
+            {/* Service 3: Sourcing */}
             <motion.div {...fadeUp} transition={{ delay: 0.3 }} className="service-spotlight-card">
               <div className="service-spotlight-img-wrapper">
-                <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="LCL Shipping" fill style={{ objectFit: 'cover' }} />
-              </div>
-              <div className="service-spotlight-content">
-                <span className="service-spotlight-tagline">LCL Shipping Consolidation</span>
-                <h3 className="service-spotlight-title">LCL Shipping</h3>
-                <p className="service-spotlight-desc">Less-than-Container-Load shipping. Pay only for the volume you occupy (CBM). We consolidate small boxes from separate manufacturers in our warehouses to minimize your costs.</p>
-                <div className="service-spotlight-specs">
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Minimum Volume:</span>
-                    <span className="service-spotlight-spec-value">1 CBM</span>
-                  </div>
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Free Storage:</span>
-                    <span className="service-spotlight-spec-value">Up to 30 Days</span>
-                  </div>
-                </div>
-                <Link href="/contact" className="service-spotlight-btn">Inquire LCL Shipping</Link>
-              </div>
-            </motion.div>
-
-            {/* Service 4: FCL Shipping */}
-            <motion.div {...fadeUp} transition={{ delay: 0.4 }} className="service-spotlight-card">
-              <div className="service-spotlight-img-wrapper">
-                <Image src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000&auto=format&fit=crop" alt="FCL Container Logistics" fill style={{ objectFit: 'cover' }} />
-              </div>
-              <div className="service-spotlight-content">
-                <span className="service-spotlight-tagline">FCL Container Logistics</span>
-                <h3 className="service-spotlight-title">FCL Shipping</h3>
-                <p className="service-spotlight-desc">Dedicated Full-Container-Load solutions (20' GP, 40' GP, 40' HQ). We manage supplier bookings, haul containers directly to factories, supervise loading, and secure low ocean freight contracts.</p>
-                <div className="service-spotlight-specs">
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Container Sizes:</span>
-                    <span className="service-spotlight-spec-value">20' GP / 40' GP / 40' HQ</span>
-                  </div>
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Load Supervision:</span>
-                    <span className="service-spotlight-spec-value">Full Video & Seal Reports</span>
-                  </div>
-                </div>
-                <Link href="/contact" className="service-spotlight-btn">Inquire FCL Shipping</Link>
-              </div>
-            </motion.div>
-
-            {/* Service 5: Sourcing */}
-            <motion.div {...fadeUp} transition={{ delay: 0.5 }} className="service-spotlight-card">
-              <div className="service-spotlight-img-wrapper">
-                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" alt="Product Sourcing & OEM" fill style={{ objectFit: 'cover' }} />
+                <Image src="/sourcing.png" alt="Product Sourcing & OEM" fill style={{ objectFit: 'cover' }} />
               </div>
               <div className="service-spotlight-content">
                 <span className="service-spotlight-tagline">Product Sourcing & OEM</span>
@@ -258,29 +212,21 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Service 6: Import */}
-            <motion.div {...fadeUp} transition={{ delay: 0.6 }} className="service-spotlight-card">
-              <div className="service-spotlight-img-wrapper">
-                <Image src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000&auto=format&fit=crop" alt="Import & Customs Clearance" fill style={{ objectFit: 'cover' }} />
-              </div>
-              <div className="service-spotlight-content">
-                <span className="service-spotlight-tagline">Import & Customs Clearance</span>
-                <h3 className="service-spotlight-title">Import</h3>
-                <p className="service-spotlight-desc">Our expert domestic Indian custom desks handle correct HS Code classification, active custom duty calculation, file Bill of Entries, manage inspections, and release cargo immediately.</p>
-                <div className="service-spotlight-specs">
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Custom Brokerage:</span>
-                    <span className="service-spotlight-spec-value">In-House Licensed CHA</span>
-                  </div>
-                  <div className="service-spotlight-spec-row">
-                    <span className="service-spotlight-spec-label">Compliance:</span>
-                    <span className="service-spotlight-spec-value">BIS, WPC, EPR, Allied Acts Clearances</span>
-                  </div>
-                </div>
-                <Link href="/contact" className="service-spotlight-btn">Consult Custom</Link>
-              </div>
-            </motion.div>
           </div>
+
+          {/* See More Services Button */}
+          <motion.div 
+            {...fadeUp} transition={{ delay: 0.4 }}
+            style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}
+          >
+            <Link 
+              href="/services" 
+              className="service-spotlight-btn"
+              style={{ padding: '1rem 2.5rem', fontSize: '1rem', background: '#C62828' }}
+            >
+              See More Services
+            </Link>
+          </motion.div>
         </div>
       </section>
 
