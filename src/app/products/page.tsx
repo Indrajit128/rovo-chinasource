@@ -44,25 +44,9 @@ export default function ProductsPage() {
             <h1 className="product-hero-title">
               Product <span>Catalog</span>
             </h1>
-            <p className="product-hero-sub">
-              {allProducts.length} verified products across 5 categories, sourced directly from
-              certified manufacturers in China.
+            <p className="product-hero-sub" style={{ marginBottom: "2.5rem" }}>
+              Source high-quality products from certified Chinese manufacturers — fast, verified, and trade-ready.
             </p>
-
-            {/* Stats Row */}
-            <div className="product-hero-stats">
-              {[
-                { label: "Total Products", value: allProducts.length },
-                { label: "Categories",     value: 5 },
-                { label: "Min MOQ",        value: "10 Units" },
-                { label: "Lead Time",      value: "15–45 Days" },
-              ].map((s) => (
-                <div key={s.label}>
-                  <p className="product-hero-stat-value">{s.value}</p>
-                  <p className="product-hero-stat-label">{s.label}</p>
-                </div>
-              ))}
-            </div>
 
             {/* Search Bar */}
             <div className="product-search-wrap">
