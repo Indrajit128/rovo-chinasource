@@ -132,8 +132,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Interactive Sourcing Calculator ── */}
-      <SourcingCalculator />
+      {/* ── Interactive Transit & Compliance Planner ── */}
+      <TransitCompliancePlanner />
 
       {/* ── Core Values ── */}
       <section className="section bg-white">
@@ -185,47 +185,171 @@ export default function AboutPage() {
   );
 }
 
-function SourcingCalculator() {
-  const [volume, setVolume] = useState(50000);
+function TransitCompliancePlanner() {
+  const [origin, setOrigin] = useState("Guangzhou");
+  const [destination, setDestination] = useState("Mumbai");
+  const [mode, setMode] = useState("Sea");
   const [category, setCategory] = useState("Electronics");
 
-  // Middleman markup percentage based on category
-  const getMarkupPct = () => {
-    switch (category) {
-      case "Electronics": return 0.18;
-      case "Furniture":   return 0.22;
-      case "Machinery":   return 0.15;
-      case "Apparel":     return 0.25;
-      case "Decor":       return 0.20;
-      default:            return 0.20;
+  // Dynamic calculations based on options selected
+  const getTransitDays = () => {
+    if (mode === "Air") {
+      return "7–9 Days (Express Air Cargo)";
+    }
+    // Sea transit based on destination
+    switch (destination) {
+      case "Mumbai":   return "28–32 Days (Direct Port Nhava Sheva)";
+      case "Chennai":  return "24–28 Days (Direct Port Chennai)";
+      case "Delhi":    return "32–36 Days (Via Mumbai Port to Delhi ICD)";
+      case "Kolkata":  return "30–34 Days (Via Kolkata Port)";
+      default:         return "30–35 Days (Sea Cargo Consolidation)";
     }
   };
 
-  const markupPct = getMarkupPct();
-  const savedAmount = Math.round(volume * markupPct);
-  const directCost = volume - savedAmount;
+  const getComplianceDocs = () => {
+    switch (category) {
+      case "Electronics":
+        return [
+          { name: "BIS Registration", desc: "Mandatory compliance for electronic imports to India under CRS scheme." },
+          { name: "WPC Approval", desc: "Required for items featuring active wireless or Bluetooth transceivers." },
+          { name: "EPR Certificate", desc: "Extended Producer Responsibility registration for e-waste protocols." }
+        ];
+      case "Machinery":
+        return [
+          { name: "CE & ISO Certs", desc: "Required to verify equipment structural and operational safety limits." },
+          { name: "Chartered Engineer Certificate (CEC)", desc: "Mandatory audit clearance before shipping secondhand machinery." },
+          { name: "IEC Validation", desc: "Active Import Export Code must contain exact machinery HSN codes." }
+        ];
+      case "Aesthetic Devices":
+        return [
+          { name: "CDSCO License", desc: "Medical or aesthetic active laser devices require CDSCO import permission." },
+          { name: "BIS Compliance", desc: "Required for active diagnostic and photomedical power adaptors." }
+        ];
+      case "Toys & Babycare":
+        return [
+          { name: "BIS Certification", desc: "Requires strict adherence to Indian Safety Standard IS 9873." },
+          { name: "In-line Testing Report", desc: "Mandatory safety verification from NABL-certified laboratories." }
+        ];
+      case "Apparel & Home Decor":
+        return [
+          { name: "Phytosanitary Certificate", desc: "Required for organic fibers, wood items, or natural grass components." },
+          { name: "Azo-Free Dye Certificate", desc: "Mandatory verification that dye agents meet toxic-free safety rules." }
+        ];
+      default:
+        return [
+          { name: "IEC Registration", desc: "Import Export Code linked to active PAN details is mandatory for every shipment." },
+          { name: "Guangzhou Export License", desc: "Ensures seamless Chinese customs origin clearance." }
+        ];
+    }
+  };
+
+  const transitInfo = getTransitDays();
+  const complianceDocs = getComplianceDocs();
 
   return (
-    <section className="section" style={{ background: "#F1F5F9", paddingTop: "5rem", paddingBottom: "5rem" }}>
+    <section className="section" style={{ background: "#F1F5F9", paddingTop: "5.5rem", paddingBottom: "5.5rem", borderBottom: "1px solid #e2e8f0" }}>
       <div className="container">
         <motion.div {...fadeUp} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-          <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>SAVINGS CALCULATOR</span>
-          <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Calculate Your Sourcing Savings</h2>
-          <p style={{ color: "#64748b", maxWidth: "560px", margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.65 }}>
-            See how much you save by bypassing standard trade agents and sourcing directly from Chinese factory gates.
+          <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em" }}>TRADE CORRIDOR PLANNER</span>
+          <h2 className="h2-display" style={{ marginBottom: "1rem" }}>Interactive Route &amp; Compliance Planner</h2>
+          <p style={{ color: "#64748b", maxWidth: "600px", margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.65 }}>
+            Estimate exact cargo shipping durations and track critical Indian customs compliance protocols for your sourcing portfolio in real-time.
           </p>
         </motion.div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", alignItems: "stretch" }}>
-          {/* Controls Card */}
-          <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ background: "white", borderRadius: "1.5rem", padding: "2.5rem", border: "1px solid #e2e8f0", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#0f172a", marginBottom: "1.5rem" }}>Configure Sourcing Parameters</h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", alignItems: "stretch" }}>
+          
+          {/* Planner Controls Card */}
+          <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ background: "white", borderRadius: "1.5rem", padding: "2.5rem", border: "1px solid #e2e8f0", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#0f172a", borderBottom: "1px solid #f1f5f9", paddingBottom: "1rem", margin: 0 }}>Corridor Settings</h3>
             
-            {/* Category Selector */}
-            <div style={{ marginBottom: "2rem" }}>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 700, color: "#475569", marginBottom: "0.75rem" }}>SELECT PRODUCT CATEGORY</label>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                {["Electronics", "Furniture", "Machinery", "Apparel", "Decor"].map((cat) => (
+            {/* Origin Option */}
+            <div>
+              <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 800, color: "#475569", marginBottom: "0.6rem", letterSpacing: "0.05em" }}>1. CHINA ORIGIN HUB</label>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {["Guangzhou", "Shenzhen", "Yiwu", "Ningbo"].map((o) => (
+                  <button
+                    key={o}
+                    onClick={() => setOrigin(o)}
+                    style={{
+                      background: origin === o ? "#C62828" : "#F8FAFC",
+                      color: origin === o ? "white" : "#475569",
+                      border: "1px solid",
+                      borderColor: origin === o ? "#C62828" : "#e2e8f0",
+                      padding: "0.4rem 0.85rem",
+                      borderRadius: "0.5rem",
+                      fontSize: "0.78rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    {o}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Destination Option */}
+            <div>
+              <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 800, color: "#475569", marginBottom: "0.6rem", letterSpacing: "0.05em" }}>2. INDIA DESTINATION PORT</label>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {["Mumbai", "Delhi", "Chennai", "Kolkata"].map((d) => (
+                  <button
+                    key={d}
+                    onClick={() => setDestination(d)}
+                    style={{
+                      background: destination === d ? "#C62828" : "#F8FAFC",
+                      color: destination === d ? "white" : "#475569",
+                      border: "1px solid",
+                      borderColor: destination === d ? "#C62828" : "#e2e8f0",
+                      padding: "0.4rem 0.85rem",
+                      borderRadius: "0.5rem",
+                      fontSize: "0.78rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Cargo Mode */}
+            <div>
+              <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 800, color: "#475569", marginBottom: "0.6rem", letterSpacing: "0.05em" }}>3. LOGISTICS DISPATCH MODE</label>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                {["Sea", "Air"].map((m) => (
+                  <button
+                    key={m}
+                    onClick={() => setMode(m)}
+                    style={{
+                      flex: 1,
+                      background: mode === m ? "#1e293b" : "#F8FAFC",
+                      color: mode === m ? "white" : "#475569",
+                      border: "1px solid",
+                      borderColor: mode === m ? "#1e293b" : "#e2e8f0",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "0.5rem",
+                      fontSize: "0.8rem",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    {m === "Sea" ? "🚢 Sea Cargo (Eco)" : "✈️ Air Freight (Express)"}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Sourcing Category */}
+            <div>
+              <label style={{ display: "block", fontSize: "0.78rem", fontWeight: 800, color: "#475569", marginBottom: "0.6rem", letterSpacing: "0.05em" }}>4. PRODUCT CATEGORY FOR COMPLIANCE</label>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {["Electronics", "Machinery", "Aesthetic Devices", "Toys & Babycare", "Apparel & Home Decor"].map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setCategory(cat)}
@@ -234,10 +358,10 @@ function SourcingCalculator() {
                       color: category === cat ? "white" : "#475569",
                       border: "1px solid",
                       borderColor: category === cat ? "#C62828" : "#e2e8f0",
-                      padding: "0.5rem 1rem",
-                      borderRadius: "99px",
-                      fontSize: "0.8rem",
-                      fontWeight: 600,
+                      padding: "0.4rem 0.85rem",
+                      borderRadius: "0.5rem",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
                       cursor: "pointer",
                       transition: "all 0.2s"
                     }}
@@ -248,64 +372,49 @@ function SourcingCalculator() {
               </div>
             </div>
 
-            {/* Volume Slider */}
-            <div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-                <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "#475569" }}>TARGET ORDER VOLUME (USD)</label>
-                <span style={{ fontSize: "1rem", fontWeight: 800, color: "#C62828" }}>${volume.toLocaleString()}</span>
-              </div>
-              <input
-                type="range"
-                min="10000"
-                max="500000"
-                step="500"
-                value={volume}
-                onChange={(e) => setVolume(Number(e.target.value))}
-                style={{
-                  width: "100%",
-                  accentColor: "#C62828",
-                  cursor: "pointer"
-                }}
-              />
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#94a3b8", marginTop: "0.5rem", fontWeight: 600 }}>
-                <span>$10K</span>
-                <span>$250K</span>
-                <span>$500K</span>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Results Display */}
+          {/* Results & Compliance Display Card */}
           <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", borderRadius: "1.5rem", padding: "2.5rem", color: "white", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
             <div>
-              <span style={{ display: "inline-block", background: "rgba(249,115,22,0.15)", color: "#ffedd5", border: "1px solid rgba(249,115,22,0.3)", fontSize: "0.7rem", fontWeight: 700, padding: "0.25rem 0.75rem", borderRadius: "99px", marginBottom: "1.5rem", letterSpacing: "0.05em" }}>ESTIMATED OUTCOME</span>
+              <span style={{ display: "inline-block", background: "rgba(249,115,22,0.15)", color: "#ffedd5", border: "1px solid rgba(249,115,22,0.3)", fontSize: "0.7rem", fontWeight: 700, padding: "0.25rem 0.75rem", borderRadius: "99px", marginBottom: "1.5rem", letterSpacing: "0.05em" }}>ESTIMATED ROUTING CORRIDOR</span>
               
               <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                {/* Saved amount */}
+                
+                {/* Transit Details */}
                 <div>
-                  <p style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Middleman Markups Saved</p>
-                  <p style={{ fontSize: "3rem", fontWeight: 900, color: "#22c55e", lineHeight: 1.1 }}>+ ${savedAmount.toLocaleString()}</p>
-                  <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>({(markupPct * 100).toFixed(0)}% trading markup eliminated)</p>
+                  <p style={{ fontSize: "0.75rem", color: "#94a3b8", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>Estimated Transit Duration</p>
+                  <p style={{ fontSize: "1.5rem", fontWeight: 900, color: "#f97316", marginTop: "0.25rem" }}>{transitInfo}</p>
+                  <p style={{ fontSize: "0.75rem", color: "#64748b", marginTop: "0.15rem" }}>Route: {origin} Hub → Dispatch Corridor → {destination} Terminal.</p>
                 </div>
 
-                {/* Direct Factory Cost */}
+                {/* Compliance Protocols */}
                 <div>
-                  <p style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Your Landed Factory Gate Cost</p>
-                  <p style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f8fafc" }}>${directCost.toLocaleString()}</p>
+                  <p style={{ fontSize: "0.75rem", color: "#cbd5e1", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.75rem", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "0.4rem" }}>Mandatory Indian Compliance Protocols</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    {complianceDocs.map((doc, idx) => (
+                      <div key={idx} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "0.75rem", padding: "0.75rem 1rem" }}>
+                        <h4 style={{ fontSize: "0.82rem", fontWeight: 700, color: "#38bdf8" }}>✓ {doc.name}</h4>
+                        <p style={{ fontSize: "0.72rem", color: "#94a3b8", marginTop: "0.15rem", lineHeight: 1.4 }}>{doc.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
               </div>
             </div>
 
-            {/* Bottom Sourcing CTA */}
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1.5rem", marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+            {/* Bottom Routing CTA */}
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.5rem", marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
               <div>
-                <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "#cbd5e1" }}>Transit Time Guarantee</p>
-                <p style={{ fontSize: "0.72rem", color: "#94a3b8" }}>Sea: 30–35 Days | Air: 7–9 Days</p>
+                <p style={{ fontSize: "0.78rem", fontWeight: 700, color: "#cbd5e1" }}>Doorstep Delivery Handled</p>
+                <p style={{ fontSize: "0.7rem", color: "#64748b" }}>We handle standard custom filings &amp; delivery.</p>
               </div>
-              <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#C62828", color: "white", textDecoration: "none", fontSize: "0.85rem", fontWeight: 700, padding: "0.75rem 1.25rem", borderRadius: "0.75rem", transition: "background 0.2s" }}>
-                Claim Sourcing Quote <ArrowRight size={14} />
+              <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#C62828", color: "white", textDecoration: "none", fontSize: "0.82rem", fontWeight: 700, padding: "0.7rem 1.2rem", borderRadius: "0.5rem", transition: "background 0.2s" }}>
+                Plan My Shipment <ArrowRight size={14} />
               </Link>
             </div>
+
           </motion.div>
         </div>
       </div>
