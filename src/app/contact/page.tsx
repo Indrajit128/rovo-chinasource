@@ -149,6 +149,44 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Office Location Map ── */}
+      <section className="section bg-white" style={{ padding: '0 0 5rem 0' }}>
+        <div className="container relative z-10 w-full">
+          <motion.div {...fadeUp} style={{ margin: '0 auto', maxWidth: '1000px', background: '#F8FAFC', padding: '3.5rem', borderRadius: '1.5rem', border: '1px solid #E2E8F0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
+              <div>
+                <span className="section-eyebrow orange" style={{ letterSpacing: '0.2em', textTransform: 'uppercase' }}>Global Operations</span>
+                <h3 style={{ fontSize: '1.85rem', color: '#0F172A', marginBottom: '1.25rem', fontWeight: 800 }}>Guangzhou Headquarters</h3>
+                
+                <div style={{ background: '#FFFFFF', padding: '1.5rem', borderRadius: '1rem', border: '1px solid #F1F5F9', marginBottom: '1.5rem' }}>
+                  <p style={{ color: '#0F172A', fontSize: '1rem', lineHeight: '1.6', fontWeight: 600 }}>
+                    Room 503-504, Area C, Huilong Cross-Strait Youth Entrepreneurship Base
+                    <br />No. 88 Helong 1st Road, Baiyun District
+                  </p>
+                </div>
+                
+                <p style={{ color: '#64748B', fontSize: '0.95rem', lineHeight: '1.7', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <span style={{ display: 'inline-block', padding: '0.25rem 0.5rem', background: '#E2E8F0', borderRadius: '0.25rem', fontSize: '0.75rem', fontWeight: 700, color: '#475569' }}>中文</span>
+                  广州市白云区鹤龙一路88号汇龙海峡两岸青年创业基地C503-504
+                </p>
+              </div>
+              
+              <div style={{ width: '100%', height: '320px', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.06)', border: '1px solid #E2E8F0' }}>
+                <iframe 
+                  src="https://www.google.com/maps?q=广州市白云区鹤龙一路88号汇龙海峡两岸青年创业基地&output=embed" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </main>
   );
 }

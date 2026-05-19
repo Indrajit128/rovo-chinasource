@@ -24,8 +24,8 @@ export default function Footer() {
               <p>Kwun Tong Industrial Hub</p>
             </div>
             <div className="office-tag">
-              <strong>Guangzhou</strong>
-              <p>Baiyun District Centre</p>
+              <strong>Guangzhou HQ</strong>
+              <p style={{ fontSize: "0.8rem", lineHeight: "1.4", marginTop: "0.25rem", color: "var(--color-warm-gray-400)" }}>Room 503-504, Area C, Huilong Base<br/>No. 88 Helong 1st Road, Baiyun District</p>
             </div>
           </div>
           <div className="footer-nav-col">
