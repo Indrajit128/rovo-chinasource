@@ -87,6 +87,22 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      {/* ── Company Video ── */}
+      <section className="bg-white" style={{ paddingBottom: "5rem" }}>
+        <div className="container">
+          <motion.div {...fadeUp} style={{ position: "relative", width: "100%", maxWidth: "1000px", margin: "0 auto", borderRadius: "1.5rem", overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)", border: "1px solid #E2E8F0" }}>
+            <video 
+              src="/about-video.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              controls
+              style={{ width: "100%", height: "auto", display: "block", aspectRatio: "16/9", objectFit: "cover", background: "#0F172A" }}
+            />
+          </motion.div>
+        </div>
+      </section>
 
       {/* ── Journey Story ── */}
       <section className="section" style={{ background: "#F8FAFC" }}>
