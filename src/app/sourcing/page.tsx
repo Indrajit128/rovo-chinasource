@@ -183,13 +183,11 @@ export default function SourcingPage() {
               </ul>
             </motion.div>
 
-            <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ width: "100%", borderRadius: "1.5rem", overflow: "hidden", boxShadow: "var(--shadow-xl)", display: "flex" }}>
-              <Image 
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ width: "100%", aspectRatio: "4/3", position: "relative", borderRadius: "1.5rem", overflow: "hidden", boxShadow: "var(--shadow-xl)" }}>
+              <img 
                 src="https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=1000&auto=format&fit=crop" 
                 alt="assorted-color filed intermodal containers"
-                width={1000}
-                height={800}
-                style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "450px" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </motion.div>
           </div>
