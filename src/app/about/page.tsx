@@ -165,6 +165,32 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Lifecycle ── */}
+      <section className="bg-white" style={{ position: 'relative', overflow: 'hidden', padding: '2rem 0 5rem' }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%)', zIndex: 0 }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <motion.div 
+            {...fadeUp}
+            style={{ 
+              position: 'relative', 
+              width: '100%', 
+              maxWidth: '1200px', 
+              margin: '0 auto',
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <Image 
+              src="/lifecycle.png" 
+              alt="Our End-to-End Workflow" 
+              width={1200}
+              height={630}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+              priority
+            />
+          </motion.div>
+        </div>
+      </section>
 
       {/* ── Bottom CTA ── */}
       <section className="section bg-white">
