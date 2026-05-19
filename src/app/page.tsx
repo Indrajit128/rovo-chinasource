@@ -141,11 +141,11 @@ export default function Home() {
                 Your Boots on the <span style={{ color: '#C62828' }}>Factory Floor</span>
               </h2>
               <p style={{ color: '#4A5568', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
-                ROVO ChinaSourcing is a next-generation procurement and supply chain specialist. 
-                We bridge the gap between Indian enterprises and China's vast manufacturing ecosystems by establishing highly secure, transparent, and direct factory-to-warehouse trade corridors.
+                ROVO ChinaSourcing is a next-generation procurement, sourcing, and supply chain specialist. 
+                We bridge the gap between Indian enterprises and China's vast manufacturing ecosystems by establishing highly secure, transparent, and direct door-to-door trade corridors.
               </p>
               <p style={{ color: '#4A5568', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '2rem' }}>
-                Unlike traditional trading agencies that mark up product costs, our bilingual agents negotiate directly inside local manufacturing hubs (Shenzhen, Guangzhou, Ningbo, and Yiwu). We protect your B2B margins and ensure absolute product compliance before any container is locked.
+                Unlike traditional trading agencies that mark up product costs, our bilingual agents negotiate directly inside local manufacturing hubs (Shenzhen, Guangzhou, Ningbo, and Yiwu). We protect your B2B margins and ensure absolute product compliance before any container is locked for seamless door-to-door delivery.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div>
