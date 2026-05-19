@@ -154,6 +154,48 @@ export default function SourcingPage() {
         </div>
       </section>
 
+      {/* ── Our Services ── */}
+      <section className="section bg-white" style={{ borderBottom: "1px solid #f1f5f9" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "4rem", alignItems: "center" }}>
+            <motion.div {...fadeUp}>
+              <span className="section-eyebrow orange" style={{ letterSpacing: "0.2em", textTransform: "uppercase" }}>Our Services</span>
+              <h2 className="h2-display" style={{ marginBottom: "1.5rem", color: "#0F172A", lineHeight: 1.2 }}>
+                We are deeply committed to the <span style={{ color: "#C62828" }}>growth and success</span> of our clients.
+              </h2>
+              
+              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "1.25rem", marginTop: "2rem" }}>
+                {[
+                  "Logistics Management & Supply Chain",
+                  "Labeling and branding solutions",
+                  "Supplier Relationship Management",
+                  "Supplier identification and Selection",
+                  "Quality Assurance & Inspections",
+                  "Cost Optimization & Negotiation"
+                ].map((item, i) => (
+                  <li key={i} style={{ display: "flex", alignItems: "center", gap: "1rem", fontSize: "1.05rem", color: "#4A5568", fontWeight: 500 }}>
+                    <div style={{ width: "1.75rem", height: "1.75rem", borderRadius: "50%", background: "#FEF2F2", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <CheckCircle2 size={16} style={{ color: "#C62828" }} />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ position: "relative", height: "500px", borderRadius: "1.5rem", overflow: "hidden", boxShadow: "var(--shadow-xl)" }}>
+              <Image 
+                src="https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=1000&auto=format&fit=crop" 
+                alt="assorted-color filed intermodal containers"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Stats ── */}
       <section className="section bg-white">
         <div className="container">
