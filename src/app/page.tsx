@@ -350,7 +350,7 @@ export default function Home() {
 
 
       {/* STEP-BY-STEP — VISUALIZATION UPGRADE */}
-      <section id="process" className="section bg-white" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section id="process" className="bg-white" style={{ position: 'relative', overflow: 'hidden', padding: '2rem 0 5rem' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%)', zIndex: 0 }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 
@@ -361,7 +361,7 @@ export default function Home() {
               position: 'relative', 
               width: '100%', 
               maxWidth: '1200px', 
-              margin: '3rem auto 0',
+              margin: '0 auto',
               display: 'flex',
               justifyContent: 'center'
             }}
