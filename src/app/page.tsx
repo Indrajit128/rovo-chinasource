@@ -353,70 +353,28 @@ export default function Home() {
       <section id="process" className="section bg-white" style={{ position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%)', zIndex: 0 }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div {...fadeUp} className="section-header centered">
-            <span className="section-eyebrow orange">Lifecycle</span>
-            <h2 className="h2-display">Our End-to-End Workflow</h2>
-            <p className="section-sub">A 12-step precision pipeline designed for modern enterprise trade.</p>
+
+
+          <motion.div 
+            {...fadeUp}
+            style={{ 
+              position: 'relative', 
+              width: '100%', 
+              maxWidth: '1200px', 
+              margin: '3rem auto 0',
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <Image 
+              src="/lifecycle.png" 
+              alt="Our End-to-End Workflow" 
+              width={1200}
+              height={630}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+              priority
+            />
           </motion.div>
-
-          <div className="cyclic-workflow-wrapper" suppressHydrationWarning>
-            <div className="cyclic-orbit" />
-            <div className="cyclic-center-node">
-              <Zap size={32} style={{ marginBottom: '0.5rem' }} />
-              <span style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}>PRECISION</span>
-              <span style={{ fontSize: '1.1rem', fontWeight: 800 }}>LIFECYCLE</span>
-            </div>
-
-            {[
-              { title: "Customers", icon: <Globe size={20} />, step: "01" },
-              { title: "Inquiry", icon: <FileText size={20} />, step: "02" },
-              { title: "Sourcing", icon: <Search size={20} />, step: "03" },
-              { title: "Invoice", icon: <FileText size={20} />, step: "04" },
-              { title: "Payment", icon: <CreditCard size={20} />, step: "05" },
-              { title: "Order", icon: <Zap size={20} />, step: "06" },
-              { title: "Collect", icon: <PackageCheck size={20} />, step: "07" },
-              { title: "Warehouse", icon: <Warehouse size={20} />, step: "08" },
-              { title: "Q&C", icon: <ClipboardCheck size={20} />, step: "09" },
-              { title: "Loading", icon: <Truck size={20} />, step: "10" },
-              { title: "Customs", icon: <ShieldCheck size={20} />, step: "11" },
-              { title: "Shipping", icon: <Ship size={20} />, step: "12" },
-            ].map((step, idx) => {
-              let style = {};
-              if (mounted && typeof window !== "undefined" && window.innerWidth > 900) {
-                const angle = (idx * 30 - 90) * (Math.PI / 180);
-                const radius = 300;
-                const x = radius * Math.cos(angle);
-                const y = radius * Math.sin(angle);
-                style = { 
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                  transform: 'translate(-50%, -50%)',
-                  position: 'absolute'
-                };
-              } else {
-                style = { position: 'relative' };
-              }
-
-              return (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ delay: idx * 0.05 }}
-                  className="cyclic-step"
-                  style={style}
-                  suppressHydrationWarning
-                >
-                  <div className="step-bubble">
-                    {step.icon}
-                  </div>
-                  <h5>{step.title}</h5>
-                  <span className="step-num-visual">{step.step}</span>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </section>
     </main>
