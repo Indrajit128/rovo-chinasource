@@ -161,8 +161,8 @@ export default function Home() {
             
             <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ position: 'relative', height: '420px', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: 'var(--shadow-xl)' }}>
               <Image 
-                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop" 
-                alt="ROVO Sourcing Specialists on Factory Floor"
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop" 
+                alt="ROVO Sourcing Partners and Colleagues"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{ objectFit: 'cover' }}
