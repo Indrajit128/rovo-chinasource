@@ -131,6 +131,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHO WE ARE */}
+      <section className="section bg-white" style={{ borderBottom: '1px solid #f1f5f9' }}>
+        <div className="container">
+          <div className="split-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+            <motion.div {...fadeUp}>
+              <span className="section-eyebrow orange" style={{ letterSpacing: '0.2em', textTransform: 'uppercase' }}>Who We Are</span>
+              <h2 className="h2-display" style={{ marginBottom: '1.5rem', color: '#0F172A' }}>
+                Your Boots on the <span style={{ color: '#C62828' }}>Factory Floor</span>
+              </h2>
+              <p style={{ color: '#4A5568', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                ROVO ChinaSourcing is a next-generation procurement and supply chain specialist. 
+                We bridge the gap between Indian enterprises and China's vast manufacturing ecosystems by establishing highly secure, transparent, and direct factory-to-warehouse trade corridors.
+              </p>
+              <p style={{ color: '#4A5568', fontSize: '1.1rem', lineHeight: '1.7', marginBottom: '2rem' }}>
+                Unlike traditional trading agencies that mark up product costs, our bilingual agents negotiate directly inside local manufacturing hubs (Shenzhen, Guangzhou, Ningbo, and Yiwu). We protect your B2B margins and ensure absolute product compliance before any container is locked.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>Local China Presence</h4>
+                  <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.5 }}>Fluent negotiators working directly inside factory walls in Guangzhou.</p>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>Zero Trading Markups</h4>
+                  <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.5 }}>We connect you directly to the source, eliminating middlemen costs.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div {...fadeUp} transition={{ delay: 0.2 }} style={{ position: 'relative', height: '420px', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: 'var(--shadow-xl)' }}>
+              <Image 
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop" 
+                alt="ROVO Sourcing Specialists on Factory Floor"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES OVERVIEW */}
       <section className="section bg-warm-gray">
         <div className="container">
@@ -318,7 +359,7 @@ export default function Home() {
             <p className="section-sub">A 12-step precision pipeline designed for modern enterprise trade.</p>
           </motion.div>
 
-          <div className="cyclic-workflow-wrapper">
+          <div className="cyclic-workflow-wrapper" suppressHydrationWarning>
             <div className="cyclic-orbit" />
             <div className="cyclic-center-node">
               <Zap size={32} style={{ marginBottom: '0.5rem' }} />
@@ -341,7 +382,7 @@ export default function Home() {
               { title: "Shipping", icon: <Ship size={20} />, step: "12" },
             ].map((step, idx) => {
               let style = {};
-              if (mounted && window.innerWidth > 900) {
+              if (mounted && typeof window !== "undefined" && window.innerWidth > 900) {
                 const angle = (idx * 30 - 90) * (Math.PI / 180);
                 const radius = 300;
                 const x = radius * Math.cos(angle);
@@ -359,12 +400,13 @@ export default function Home() {
               return (
                 <motion.div 
                   key={idx}
-                  initial={mounted ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: idx * 0.05 }}
                   className="cyclic-step"
                   style={style}
+                  suppressHydrationWarning
                 >
                   <div className="step-bubble">
                     {step.icon}
