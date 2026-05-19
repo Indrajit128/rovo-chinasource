@@ -2,76 +2,80 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setIsScrolled(true);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <header 
-      className="navbar" 
-      style={{ 
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
-        boxShadow: '0 2px 24px rgba(15,23,42,0.04)'
-      }}
-    >
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-          <div style={{ width: '2.25rem', height: '2.25rem', background: '#C62828', borderRadius: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: 'white', fontWeight: 900, fontSize: '0.88rem' }}>RC</span>
+    <header className={`navbar ${isMobileMenuOpen ? "mobile-menu-active" : ""}`}>
+      <div className="container navbar-container">
+        <Link href="/" className="navbar-logo">
+          <div className="logo-badge">
+            <span>RC</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontWeight: 900, fontSize: '1.125rem', color: '#0F172A' }}>
-              ROVO <span style={{ color: '#C62828' }}>ChinaSourcing</span>
+          <div className="logo-text">
+            <span className="logo-brand">
+              ROVO <span className="logo-accent-red">ChinaSourcing</span>
             </span>
-            <span style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#64748B', marginTop: '3px' }}>
+            <span className="logo-subtext-gray">
               Premium Sourcing & Logistics
             </span>
           </div>
         </Link>
         
-        <nav className="nav-links" style={{ margin: 0, gap: '2.5rem', display: 'flex' }}>
-          <Link href="/" className="nav-link" style={{ color: '#C62828', fontWeight: 'bold' }}>Home</Link>
-          <Link href="/services" className="nav-link" style={{ color: '#0F172A' }}>Services</Link>
-          <Link href="/products" className="nav-link" style={{ color: '#0F172A' }}>Product Category</Link>
-          <Link href="/sourcing" className="nav-link" style={{ color: '#0F172A' }}>Sourcing</Link>
-          <Link href="/about" className="nav-link" style={{ color: '#0F172A' }}>About Us</Link>
-          <Link href="/contact" className="nav-link" style={{ color: '#0F172A' }}>Contact Details</Link>
+        {/* Desktop Navigation */}
+        <nav className="nav-links">
+          <Link href="/" className="nav-link nav-link-home">Home</Link>
+          <Link href="/services" className="nav-link">Services</Link>
+          <Link href="/products" className="nav-link">Product Category</Link>
+          <Link href="/sourcing" className="nav-link">Sourcing</Link>
+          <Link href="/about" className="nav-link">About Us</Link>
+          <Link href="/contact" className="nav-link">Contact Details</Link>
         </nav>
 
-        <Link 
-          href="/contact"
-          className="btn-primary" 
-          style={{ 
-            borderRadius: '9999px', 
-            background: '#C62828', 
-            color: 'white', 
-            fontWeight: 'bold', 
-            border: 'none', 
-            padding: '0.625rem 1.5rem',
-            cursor: 'pointer',
-            textDecoration: 'none',
-            display: 'inline-block'
-          }}
+        {/* Desktop Get Started Button */}
+        <div className="navbar-actions">
+          <Link href="/contact" className="btn-primary nav-btn-primary">
+            Get Started
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button 
+          className="mobile-menu-toggle" 
+          onClick={toggleMobileMenu}
+          aria-label="Toggle Navigation Menu"
         >
-          Get Started
-        </Link>
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Mobile Navigation Drawer */}
+        <div className={`mobile-nav-drawer ${isMobileMenuOpen ? "open" : ""}`}>
+          <nav className="mobile-nav-links">
+            <Link href="/" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+            <Link href="/services" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
+            <Link href="/products" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Product Category</Link>
+            <Link href="/sourcing" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Sourcing</Link>
+            <Link href="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
+            <Link href="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact Details</Link>
+            
+            <div className="mobile-nav-actions">
+              <Link href="/contact" className="btn-primary mobile-btn-primary" onClick={() => setIsMobileMenuOpen(false)}>
+                Get Started
+              </Link>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );

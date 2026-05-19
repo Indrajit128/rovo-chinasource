@@ -341,7 +341,7 @@ export default function Home() {
               { title: "Shipping", icon: <Ship size={20} />, step: "12" },
             ].map((step, idx) => {
               let style = {};
-              if (mounted) {
+              if (mounted && window.innerWidth > 900) {
                 const angle = (idx * 30 - 90) * (Math.PI / 180);
                 const radius = 300;
                 const x = radius * Math.cos(angle);
